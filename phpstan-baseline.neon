@@ -1,0 +1,6 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Call to method scalarNode\\(\\) on an unknown class mixed\\.$#"
+			count: 1
+			path: src/DependencyInjection/Configuration.php

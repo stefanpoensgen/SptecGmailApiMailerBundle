@@ -1,0 +1,47 @@
+{
+  "name": "sptec/gmail-api-mailer-bundle",
+  "description": "Symfony Mailer Transport for Gmail API including Google OAuth2 authentication.",
+  "keywords": ["symfony", "mailer", "gmail"],
+  "type": "symfony-bundle",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "Sptec\\GmailApiMailerBundle\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Stefan Poensgen",
+      "email": "mail@stefanpoensgen.de"
+    }
+  ],
+  "require": {
+    "php": ">=7.4",
+    "symfony/config": "^5.0|^6.0",
+    "symfony/dependency-injection": "^5.4|^6.0",
+    "symfony/mailer": "^5.0|^6.0",
+    "google/apiclient": "^2.0"
+  },
+  "scripts": {
+    "pre-autoload-dump": "Google\\Task\\Composer::cleanup"
+  },
+  "extra": {
+    "google/apiclient-services": [
+      "Gmail"
+    ]
+  },
+  "config": {
+    "allow-plugins": {
+      "phpstan/extension-installer": true
+    }
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^9.5",
+    "phpstan/phpstan": "^1.8",
+    "phpstan/phpstan-symfony": "^1.2",
+    "phpstan/extension-installer": "^1.1",
+    "symplify/easy-coding-standard": "^11.1",
+    "symfony/phpunit-bridge": "^6.1",
+    "symfony/http-client": "^6.1"
+  }
+}

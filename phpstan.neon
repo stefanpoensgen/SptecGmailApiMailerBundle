@@ -1,0 +1,14 @@
+includes:
+    - phpstan-baseline.neon
+
+parameters:
+	level: 9
+	inferPrivatePropertyTypeFromConstructor: true
+	checkMissingIterableValueType: false
+	paths:
+		- src
+	symfony:
+	    container_xml_path: ../../../var/cache/dev/App_KernelDevDebugContainer.xml
+	    console_application_loader: bin/console-application.php
+	bootstrapFiles:
+	    - bin/static-analyze-autoloader.php
