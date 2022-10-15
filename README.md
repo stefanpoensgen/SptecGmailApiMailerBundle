@@ -25,14 +25,25 @@ return [
 ```
 
 ## Configuration
+### Google API Client
+If you don't use [Symfony Flex](https://github.com/symfony/flex) you have create the following configuration
 ```yaml
-sptec_gmail_api_mailer:
-  client_id: <your-client-id>
-  client_secret: <your-client-secret>
+# config/packages/google_apiclient.yaml
+services:
+  Google_Client:
+    class: Google_Client
+    calls:
+      - [setClientId, ['%env(GOOGLE_CLIENT_ID)%']]
+      - [setClientSecret, ['%env(GOOGLE_CLIENT_SECRET)%']]
 ```
 
 ### .env
 ```dotenv
+###> google/apiclient ###
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=
+###< google/apiclient ###
+
 ###> symfony/mailer ###
 MAILER_DSN=gmail+api://null
 ###< symfony/mailer ###

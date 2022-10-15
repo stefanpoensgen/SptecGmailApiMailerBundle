@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Sptec\GmailApiMailerBundle\Google;
 
-use Google\Client;
 use Google\Exception;
 use Google\Service\Gmail;
+use Google_Client;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Output\NullOutput;
@@ -18,11 +18,7 @@ class GoogleHelper
 
     public const USER = 'me';
 
-    private Client $client;
-
-    private string $clientId;
-
-    private string $clientSecret;
+    private Google_Client $client;
 
     private string $redirectUri;
 
@@ -31,26 +27,24 @@ class GoogleHelper
     private KernelInterface $kernel;
 
     public function __construct(
-        string $clientId,
-        string $clientSecret,
+        Google_Client $client,
         string $redirectUri,
         array $access_token,
         KernelInterface $kernel
     ) {
-        $this->clientId = $clientId;
-        $this->clientSecret = $clientSecret;
         $this->redirectUri = $redirectUri;
         $this->access_token = $access_token;
         $this->kernel = $kernel;
-        $this->client = $this->createClient();
+        $this->client = $client;
+        $this->setClientDefaults();
     }
 
-    public function getClient(): Client
+    public function getClient(): Google_Client
     {
         return $this->client;
     }
 
-    public function getAuthenticatedClient(): Client
+    public function getAuthenticatedClient(): Google_Client
     {
         $this->client->setAccessToken($this->access_token);
 
@@ -86,17 +80,12 @@ class GoogleHelper
         $application->run($input, new NullOutput());
     }
 
-    private function createClient(): Client
+    private function setClientDefaults(): void
     {
-        $client = new Client();
-        $client->setApplicationName('Symfony Gmail API Mailer');
-        $client->setClientId($this->clientId);
-        $client->setClientSecret($this->clientSecret);
-        $client->setRedirectUri($this->redirectUri);
-        $client->setScopes(Gmail::GMAIL_SEND);
-        $client->setAccessType('offline');
-        $client->setPrompt('select_account consent');
-
-        return $client;
+        $this->client->setApplicationName('Symfony Gmail API Mailer');
+        $this->client->setRedirectUri($this->redirectUri);
+        $this->client->setScopes(Gmail::GMAIL_SEND);
+        $this->client->setAccessType('offline');
+        $this->client->setPrompt('select_account consent');
     }
 }
