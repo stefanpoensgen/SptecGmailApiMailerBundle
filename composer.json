@@ -17,9 +17,9 @@
   ],
   "require": {
     "php": ">=7.4",
-    "symfony/config": "^5.0|^6.0",
+    "symfony/config": "^5.4|^6.0",
     "symfony/dependency-injection": "^5.4|^6.0",
-    "symfony/mailer": "^5.0|^6.0",
+    "symfony/mailer": "^5.4|^6.0",
     "google/apiclient": "^2.0"
   },
   "scripts": {
@@ -41,7 +41,7 @@
     "phpstan/phpstan-symfony": "^1.2",
     "phpstan/extension-installer": "^1.1",
     "symplify/easy-coding-standard": "^11.1",
-    "symfony/phpunit-bridge": "^6.1",
-    "symfony/http-client": "^6.1"
+    "symfony/phpunit-bridge": "^5.4|^6.0",
+    "symfony/http-client": "^5.4|^6.0"
   }
 }
