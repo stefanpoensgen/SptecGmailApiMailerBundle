@@ -1,4 +1,4 @@
-# [WIP] Gmail Api Mailer Bundle
+# Gmail Api Mailer Bundle
 
 Symfony Mailer Transport for Gmail API including Google OAuth2 authentication.
 
